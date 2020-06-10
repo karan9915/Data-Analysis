@@ -1,1 +1,8 @@
-In this Project I try to share my findings from the Tmdb movies data-set where I clean the data and explore it to find some interesting relationships among different variables
+Data Scientist
+1. Projects
+2. Basics
+3. Numpy
+4. Pandas
+5. Matplotlib
+6. Seaborn
+7. Scikit-Learn
