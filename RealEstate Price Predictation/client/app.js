@@ -28,6 +28,25 @@ function onClickedEstimatePrice() {
 
   var url = "http://127.0.0.1:5000/predict_home_price";
 
+  var regex = new RegExp(/[^0-9]/, 'g');
+  let message = document.getElementById('message');
+  if(sqft.value == "") {
+   message.innerHTML = `<div class="mess">
+                        <div class="alert alert-danger">
+                        <strong>Message: </strong> Please! Enter some value in "Area (Square Feet)"
+                        </div>
+                        </div>`;
+  } else if(sqft.value.match(regex)) {
+   message.innerHTML = `<div class="mess" >
+                        <div class="alert alert-danger">
+                        <strong>Message: </strong> Please! Enter a numeric a value.
+                        </div>
+                        </div>`;
+  }
+    setTimeout(function () {
+        message.innerHTML = "";
+    }, 2000)
+
   $.post(url, {
       total_sqft: parseFloat(sqft.value),
       bhk: bhk,
@@ -35,7 +54,7 @@ function onClickedEstimatePrice() {
       location: location.value
   },function(data, status) {
       console.log(data.estimated_price);
-      estPrice.innerHTML = "<h2>" + data.estimated_price.toString() + " Lakh</h2>";
+      estPrice.innerHTML = "<div class='btn btn-dark btn-lg'>" + data.estimated_price.toString() + " Lakhs</div>";
       console.log(status);
   });
 }
